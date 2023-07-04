@@ -1,7 +1,7 @@
 <?php
-// ProdutosController.php
-
 namespace App\Controllers;
+// ProdutosController.php
+require __DIR__ . '/../Models/Produto.php';
 
 use App\Models\Produto;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -29,10 +29,11 @@ class ProdutosController
         }
     }
 
-    public function listProdutos(Response $response)
+    public function listProdutos(Response $response = null)
     {
         // Obter todos os produtos do modelo
-        $produtos = Produto::listar();
+        $produto = new Produto();
+        $produtos = $produto->listar();
 
         // Retornar os produtos como resposta JSON
         //header('Content-Type: application/json');

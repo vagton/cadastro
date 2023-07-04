@@ -1,7 +1,7 @@
 <?php
-// CategoriasController.php
-
 namespace App\Controllers;
+// CategoriasController.php
+require __DIR__ . '/../Models/Categoria.php';
 
 use App\Models\Categoria;
 

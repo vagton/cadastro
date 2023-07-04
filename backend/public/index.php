@@ -23,16 +23,25 @@ $requestUrl = $_SERVER['REQUEST_URI'];
 // Verificar se a rota está mapeada
 if (array_key_exists($requestUrl, $routes)) {
 
-    // Instanciar o controlador correspondente
-    $controllerClassName = $routes[$requestUrl];
-    //$controller = new $controllerClassName();
-    list($controllerClassName, $methodName) = explode(':', $controllerMethod);
-    $controller = new $controllerClassName();
-var_dump($controller);
-    // Chamar o método apropriado no controlador
-    //$method = 'listarProdutos';
-    //$controller->$method();
-    //$controller->handle();
+        // Instanciar o controlador correspondente
+        $controllerMethod = $routes[$requestUrl];
+        list($controllerClassName, $methodName) = explode(':', $controllerMethod);
+    
+        if (!empty($controllerClassName)) {
+            $controller = new $controllerClassName();
+            var_dump($controller);
+    
+            // Verificar se o método existe no controlador
+            if (method_exists($controller, $methodName)) {
+                // Chamar o método apropriado no controlador
+                $controller->$methodName();
+            } else {
+                echo 'Método não encontrado no controlador.';
+            }
+        } else {
+            echo 'Controlador não encontrado.';
+        }
+
 } else {
     // Rota não encontrada
     echo 'Rota não encontrada.';

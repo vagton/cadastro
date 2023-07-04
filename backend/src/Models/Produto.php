@@ -1,6 +1,8 @@
 <?php
 namespace App\Models;
 
+require_once __DIR__ . '/Database.php';
+
 use App\Models\Database;
 
 class Produto
@@ -9,9 +11,10 @@ class Produto
     private $nome;
     private $preco;
     private $categoriaId;
+    private $pdo;
 
     // Construtor
-    public function __construct($id, $nome, $preco, $categoriaId)
+    public function __construct($id = null, $nome = null, $preco = null, $categoriaId=null)
     {
         $this->id = $id;
         $this->nome = $nome;
