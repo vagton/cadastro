@@ -1,0 +1,22 @@
+{
+    "name": "home/cadastro",
+    "description": "Cadastro",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Root\\Html\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vagton"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "algolia/algoliasearch-client-php": "^2.10"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -1,0 +1,43 @@
+version: '3'
+services:
+  react-frontend:
+    build: ./frontend/my-react-app
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/my-react-app:/app
+    depends_on:
+      - php  
+
+  vue-frontend:
+    build: ./frontend/my-vue-app
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./frontend/my-vue-app:/app
+    depends_on:
+      - php  
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8000:80'
+    volumes:
+      - .:/var/www/html
+      - ./backend/public/.htaccess:/var/www/html/.htaccess
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: Senha@123
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+   
+      
