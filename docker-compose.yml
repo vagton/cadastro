@@ -1,13 +1,13 @@
 version: '3'
 services:
-  react-frontend:
-    build: ./frontend/my-react-app
-    ports:
-      - '3000:3000'
-    volumes:
-      - ./frontend/my-react-app:/app
-    depends_on:
-      - php  
+  #react-frontend:
+  #  build: ./frontend/my-react-app
+  #  ports:
+  #    - '3000:3000'
+  #  volumes:
+  #    - ./frontend/my-react-app:/app
+  #  depends_on:
+  #    - php  
 
   #vue-frontend:
   #  build: ./frontend/my-vue-app
@@ -35,7 +35,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: Senha@123
     ports:
-      - '3307:3307'
+      - '3306:3306'
     volumes:
       - ./mysql-data:/var/lib/mysql
 

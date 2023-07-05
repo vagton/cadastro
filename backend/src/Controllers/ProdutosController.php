@@ -4,7 +4,6 @@ namespace App\Controllers;
 require __DIR__ . '/../Models/Produto.php';
 
 use App\Models\Produto;
-use Psr\Http\Message\ResponseInterface as Response;
 
 class ProdutosController
 {
@@ -16,7 +15,12 @@ class ProdutosController
         // Executar a ação apropriada com base no método
         switch ($method) {
             case 'GET':
-                $this->listProdutos();
+                if (isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                    $this->buscarProduto($id);
+                } else {
+                    $this->listProdutos();
+                }
                 break;
             case 'POST':
                 $this->createProduto();
@@ -29,17 +33,16 @@ class ProdutosController
         }
     }
 
-    public function listProdutos(Response $response = null)
+    public function listProdutos()
     {
         // Obter todos os produtos do modelo
         $produto = new Produto();
         $produtos = $produto->listar();
 
         // Retornar os produtos como resposta JSON
-        //header('Content-Type: application/json');
-        //echo json_encode($produtos);
-        $response->getBody()->write(json_encode($produtos));
-        return $response->withHeader('Content-Type', 'application/json');
+        $responseBody = json_encode($produtos);
+        header('Content-Type: application/json');
+        echo $responseBody;
     }
 
     public function createProduto()
@@ -58,5 +61,19 @@ class ProdutosController
         // Retornar o novo produto criado como resposta JSON
         header('Content-Type: application/json');
         echo json_encode($produto);
+    }
+
+    public function buscarProduto($id)
+    {
+        $produto = new Produto();
+        $produtoEncontrado = $produto->buscarPorId($id);
+
+        if ($produtoEncontrado) {
+            $responseBody = json_encode($produtoEncontrado);
+            header('Content-Type: application/json');
+            echo $responseBody;
+        } else {
+            header('HTTP/1.0 404 Not Found');
+        }
     }
 }

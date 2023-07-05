@@ -13,8 +13,8 @@ use App\Controllers\ProdutosController;
 
 // Definir o mapeamento das rotas
 $routes = [
-    '/backend/public/categorias' => CategoriasController::class,
-    '/backend/public/produtos' => ProdutosController::class . ':listProdutos' // Atualizado para usar o nome correto do método
+    '/backend/public/categorias' => CategoriasController::class . ':listCategorias',
+    '/backend/public/produtos{id}' => ProdutosController::class . ':listProdutos' 
 ];
 
 // Obter a URL da requisição
@@ -29,7 +29,7 @@ if (array_key_exists($requestUrl, $routes)) {
     
         if (!empty($controllerClassName)) {
             $controller = new $controllerClassName();
-            var_dump($controller);
+            //var_dump($controller);
     
             // Verificar se o método existe no controlador
             if (method_exists($controller, $methodName)) {

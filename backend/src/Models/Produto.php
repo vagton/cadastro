@@ -79,7 +79,7 @@ class Produto
         // Utilize a conexão estabelecida em database.php
     }
 
-    public static function listar()
+    public function listar()
     {
         // Lógica para listar todos os produtos do banco de dados
         $query = "SELECT * FROM produtos";
@@ -87,19 +87,21 @@ class Produto
         $stmt->execute();
         $produtos = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $produtos;
-
-        // Exemplo simples de consulta ao banco de dados
-        //$query = "SELECT * FROM produtos";
-        //$stmt = $stmt = $this->pdo->prepare($query);
-        //while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            //echo $row['nome'] . ': R$ ' . $row['preco'] . '<br>';
-        //}
     }
 
     public static function buscarPorId($id)
     {
         // Lógica para buscar um produto por ID no banco de dados
-        // Utilize a conexão estabelecida em database.php
+        if(!empty($id)){
+            $query = "SELECT * FROM produtos WHERE id = :id";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+            $stmt->execute();
+            $produtos = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $produtos;
+        }else{
+            return null;
+        }
     }
 }
 

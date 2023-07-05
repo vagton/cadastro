@@ -30,12 +30,14 @@ class CategoriasController
 
     public function listCategorias()
     {
-        // Obter todas as categorias do modelo
-        $categorias = Categoria::getAll();
-
-        // Retornar as categorias como resposta JSON
-        header('Content-Type: application/json');
-        echo json_encode($categorias);
+         // Obter todos os produtos do modelo
+         $categoria = new Categoria();
+         $categorias = $categoria->listar();
+ 
+         // Retornar os produtos como resposta JSON
+         $responseBody = json_encode($categorias);
+         header('Content-Type: application/json');
+         echo $responseBody;
     }
 
     public function createCategoria()

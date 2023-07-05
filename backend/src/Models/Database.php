@@ -13,7 +13,7 @@ class Database
         $dbname = 'cadastro'; // Nome do banco de dados
         $username = 'root'; // Nome de usuário do banco de dados
         $password = 'Senha@123'; // Senha do banco de dados
-        $port = 3307;
+        $port = 3306;
 
         try {
             $this->pdo = new \PDO("mysql:host=$host;port=$port;dbname=$dbname", $username, $password);

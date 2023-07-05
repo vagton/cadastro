@@ -3,16 +3,21 @@ namespace App\Models;
 
 require_once __DIR__ . '/Database.php';
 
+use App\Models\Database;
+
 class Categoria
 {
     private $id;
     private $nome;
+    private $pdo;
 
     // Construtor
-    public function __construct($id, $nome)
+    public function __construct($id = null, $nome = null)
     {
         $this->id = $id;
         $this->nome = $nome;
+        $database = new Database();
+        $this->pdo = $database->getConnection();
     }
 
     // Métodos Getters e Setters
@@ -29,5 +34,21 @@ class Categoria
     public function setNome($nome)
     {
         $this->nome = $nome;
+    }
+
+    public function listar()
+    {
+        // Lógica para listar todos as categorias do banco de dados
+        $query = "SELECT * FROM categorias";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $categorias = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $categorias;
+    }
+
+    public static function buscarPorId($id)
+    {
+        // Lógica para buscar um produto por ID no banco de dados
+        // Utilize a conexão estabelecida em database.php
     }
 }
