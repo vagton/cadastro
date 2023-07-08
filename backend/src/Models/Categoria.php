@@ -2,14 +2,18 @@
 namespace App\Models;
 
 require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/Model.php';
 
 use App\Models\Database;
+use App\Models\Model;
 
-class Categoria
+
+class Categoria Extends Model
 {
     private $id;
     private $nome;
-    private $pdo;
+    protected $table = "categoria";
+    protected $primary_key = "id";
 
     // Construtor
     public function __construct($id = null, $nome = null)

@@ -2,16 +2,19 @@
 namespace App\Models;
 
 require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/Model.php';
 
 use App\Models\Database;
+use App\Models\Model;
 
-class Produto
+class Produto extends Model
 {
     private $id;
     private $nome;
     private $preco;
     private $categoriaId;
-    private $pdo;
+    protected $table = "produtos";
+    protected $primary_key = "id";
 
     // Construtor
     public function __construct($id = null, $nome = null, $preco = null, $categoriaId=null)
