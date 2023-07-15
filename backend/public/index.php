@@ -1,7 +1,7 @@
 <?php
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+//session_start();
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 
 // Incluir o autoloader do Composer
 require __DIR__ . '/../../vendor/autoload.php';
@@ -13,7 +13,6 @@ require_once __DIR__ . '../../src/Controllers/Router.php';
 use App\Controllers\CategoriasController;
 use App\Controllers\ProdutosController;
 use App\Controllers\Router;
-
 
 $requestUri = $_SERVER['REQUEST_URI'];
 $router = new Router();

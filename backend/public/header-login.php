@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  <link href="<?=$GLOBALS['web']['basepath']?>/public/imagens/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+  <link href="imagens/favicon1.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,11 +13,7 @@
     <title>Site</title>
   </head>
   <body>
-  
-
-  
 <?php
-  //session_start();
   if (isset($_SESSION['mensagem'][0]) && !empty($_SESSION['mensagem'][0]['status'] && !empty($_SESSION['mensagem'][0]['description']))){
     ?>
   <div class="alert alert-<?=$_SESSION['mensagem'][0]['status']?>" role="alert">

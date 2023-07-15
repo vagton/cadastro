@@ -16,12 +16,12 @@ body {display:table-cell; text-align:center; vertical-align:middle;}
 <?php require_once('header-login.php');?>
 
 <div class="container">
-<a href="<?=$GLOBALS['web']['basepath']?>/home">
-<img class="error-logo" src="<?=$GLOBALS['web']['basepath']?>/public/imagens/logo.png">
+<a href="index">
+<img class="error-logo" src="magens/logo.png">
 </a>
 <h1 class="error-code">404</h1>
 <h2>Visualização não encontrada.</h2>
-<a href="<?=$GLOBALS['web']['basepath']?>/home" class="btn btn-secondary"><span class="fa fa-home" aria-hidden="true"></span> Página inicial</a>
+<a href="home" class="btn btn-secondary"><span class="fa fa-home" aria-hidden="true"></span> Página inicial</a>
 
 </div>
 

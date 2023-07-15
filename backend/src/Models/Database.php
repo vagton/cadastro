@@ -1,8 +1,5 @@
 <?php
-// Database.php
-
 namespace App\Models;
-
 class Database
 {
     private static $pdo;
@@ -42,7 +39,7 @@ class Database
         }
     }
 
-    public function getConnection($database_config = null)
+    public static function getConnection($database_config = null)
     {
         # Garante uma única instância. Se não existe uma conexão, criamos uma nova.
         if (!self::$pdo)

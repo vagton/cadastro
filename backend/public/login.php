@@ -1,4 +1,3 @@
-<!-- LOGIN -->
 <style>
 body {
   background-image: url("https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=740&t=st=1687789612~exp=1687790212~hmac=43dfd0adfe1a4e503d55e39bb1acf27efa9a12548c5c0ac1eb4e8e35434796e6");
@@ -19,42 +18,35 @@ body {
   margin-top: 5px;
 }
 </style>
-
 <?php
-require_once('header-login.php');
+require_once(__DIR__ . "/../src/Models/Repository.php");
+require_once(__DIR__ . "/../src/Controllers/Base.php");
+require_once(__DIR__ . "/../src/Models/Usuario.php");
 use App\Models\Repository;
 use App\Controllers\Base;
-
-
 if (!empty($_SESSION['user']))
     Base::redirect('home');
-
-
 if (!empty($_POST))
 {
-    $usuarios = Repository::getModel("Usuarios");
-    $usr = $usuarios->logar($_POST['email'], $_POST['senha']);
+    $usuario = Repository::getModel("Usuario");
+    $usr = $usuario->logar($_POST['email'], $_POST['senha']);
     if($usr){
         $_SESSION['mensagem'] = [["status" => "success", "description" => ""]];
         $_SESSION['user'] = $usr;
         $_SESSION['user']['firstname'] = explode(" ",$_SESSION['user']['nome'])[0];
-        
         Base::redirect('home');
     }else{
         $_SESSION['mensagem'] = [["status" => "info", "description" => "<b>Por Favor, verifique suas credenciais.</b>"]];
+    
     }
 }
+require_once('header-login.php');
 ?>
-  
-
-    <div class="container">
-
-    <form method="post" action="<?=$GLOBALS['web']['basepath']?>/">
-        
-    
+   <div class="container">
+   <form method="post" action="../../<?=$GLOBALS['web']['basepath']?>login">
     <div id="login">
         <div class="container">
-        <h3 class="text-center text-white"><img src="<?=$GLOBALS['web']['basepath']?>/public/imagens/logo.png" width="80px" height="50px"></h3>
+        <h3 class="text-center text-white"><img src="imagens/logo.png" width="80px" height="50px"></h3>
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
@@ -77,13 +69,8 @@ if (!empty($_POST))
             </div>
         </div>
     </div>
-
-
-
-
     </form>
-
-
     </div>
-
-<?php require_once('footer-login.php');?>
+<?php 
+require_once('footer-login.php');
+?>

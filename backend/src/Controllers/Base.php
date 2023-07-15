@@ -1,19 +1,16 @@
 <?php
 namespace App\Controllers;
-
-
 class Base
 {
     public static function redirect($uri)
     {
         $basepath = $GLOBALS['web']['basepath'];
-        header("location:$basepath$uri");
+        //header("location:$basepath$uri");]
+        echo "<script>window.location.href = '$uri/';</script>";
     }
 
     public static function alert($message, $type='primary'){
-        echo "<div class='alert alert-$type' role='alert'>
-        $message
-      </div>";
+        echo "<div class='alert alert-$type' role='alert'>$message</div>";
     }
 
     public static function cards($imagem, $titulo, $descricao, $link){
